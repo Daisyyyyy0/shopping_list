@@ -1,0 +1,121 @@
+@charset "UTF-8";
+* {
+    font-family: 微軟正黑體;
+    position: relative;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    border-top: 13px solid rgba(255, 20, 80, 0.8);
+    border-bottom: 13px solid rgba(255, 20, 80, 0.8);
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffdfae;
+}
+
+#buylist {
+    color: #e67;
+    display: inline-block;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #fadcd2;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(150, 50, 100, 0.15);
+}
+
+#buylist .buy_input {
+    padding: 0 0 24px 0;
+    border-bottom: 1px solid rgba(240, 40, 90, 0.2);
+}
+
+#buylist input {
+    border: 1px solid #fdd;
+    width: 90px;
+    margin: 0 7px 0 0;
+    padding: 3px;
+}
+
+#buylist .addbtn {
+    padding: 5px 10px;
+    margin-left: 15px;
+    border: 1px solid #fdd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#buylist .addbtn:hover {
+    background-color: #ffae36;
+    color: #fff;
+}
+
+h1 {
+    margin: -20px -20px 15px -20px;
+    padding: 20px;
+    text-align: center;
+    color: #e56;
+}
+
+#items_list {
+    width: 360px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 80, 0.1);
+    margin-top: 15px;
+    margin-left: 4px;
+    padding: 20px;
+}
+
+.buy_item {
+    position: relative;
+    padding: 6px;
+    margin-top: 12px;
+    list-style: none;
+    border: 1px solid #ffdbee;
+    border-radius: 3px;
+    color: #b08;
+    letter-spacing: 1px;
+    font-weight: 900;
+    box-shadow: 0 2px 5px rgba(255, 0, 60, 0.18);
+}
+
+.buy_item .price {
+    color: hotpink;
+    display: inline-block;
+    padding: 0px 8px;
+    position: absolute;
+    right: 50px;
+}
+
+.buy_item .price::before {
+    content: "$";
+    margin-right: 2px;
+}
+
+.buy_item .delBtn {
+    color: #d66;
+    display: inline-block;
+    position: absolute;
+    padding: 0 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.buy_item .delBtn:hover {
+    background-color: #b00;
+    color: #fff;
+}
+
+.buy_item.total {
+    color: #333;
+    font-size: 19px;
+}
+
+.buy_item.total .price {
+    color: #f0a;
+    font-size: 24px;
+    line-height: 125%;
+}
