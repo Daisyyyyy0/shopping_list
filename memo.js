@@ -1,45 +1,24 @@
-const shoplist = {
-    name: 'MyBuyList 購物清單',
-    time: '2018/3/25',
-    list: [{
-            name: "Panesonic除濕機",
-            price: 4880
-        },
-        {
-            name: "ASUS筆記型電腦",
-            price: 19800
-        },
-        {
-            name: "高質感原木音響",
-            price: 7980
-        }
-    ],
-};
-const createItem = (obj) => {
-    const {
-        id,
-        price,
-        delId,
-        del,
-        num,
-        item
-    } = obj;
-    const li = document.createElement('li');
-    li.setAttribute('id', id);
-    li.setAttribute('class', 'buy_item');
-    li.innerHTML = `${num}.${item}`;
-    var priceDiv = document.createElement('div');
-    priceDiv.setAttribute('class', 'price');
-    priceDiv.innerHTML = price;
-    const deleteBtn = document.createElement('div');
-    deleteBtn.setAttribute('id', delId);
-    deleteBtn.setAttribute('class', 'delBtn');
-    deleteBtn.setAttribute('del', del);
-    deleteBtn.innerHTML = 'X';
-    li.appendChild(priceDiv);
-    li.appendChild(deleteBtn);
-    return li;
-}
+var shoplist = {};
+shoplist.name = "MyBuyList 購物清單";
+shoplist.time = '2018/3/25';
+shoplist.list = [
+    // {name: "吹風機",price: 1000},
+    // {name: "空氣清淨機",price: 3000},
+    {
+        name: "Panesonic除濕機",
+        price: 4880
+    },
+    {
+        name: "ASUS筆記型電腦",
+        price: 19800
+    },
+    {
+        name: "高質感原木音響",
+        price: 7980
+    }
+];
+var item_html = "<li id='{{id}}' class='buy_item'>{{num}}.{{item}} <div class='price'>{{price}}</div><div id={{del_id}} class='delBtn' del='{{del}}'>X</div></li>"
+
 var total_html = "<li class='buy_item total'>Total:<div class='price'>{{price}}</div></li>"
 
 var item_id;
@@ -53,18 +32,27 @@ function showlist() {
         item_id = i;
         delItem_id = "delItem_" + i; //del
         total_price += parseInt(item.price);
-        const listItem = createItem({
-            id: i + 1,
-            price: item.price,
-            delId: delItem_id,
-            del: i,
-            num: i + 1,
-            item: item.name
-        });
-        $("#items_list").append(listItem);
+        console.log(total_price);
+        var current_item_html =
+            item_html.replace("{{num}}", i + 1)
+            .replace("{{item}}", item.name)
+            .replace("{{id}}", i)
+            .replace("{{del_id}}", delItem_id) //del
+            .replace("{{price}}", item.price)
+            .replace("{{del}}", i);
+
+        $("#items_list").append(current_item_html);
+
+
+
         $("#" + delItem_id).click( //del
             function () {
-                $(this).parent().remove();
+                removeItem($(this).parent().attr("id"));
+                // removeItem($(this).attr("del"));
+
+                // console.log($(this));
+                // removeItem($("#"+id).attr("id"))  
+                // console.log($("#"+id).attr("id"));
             }
         );
 
@@ -111,7 +99,7 @@ $(".addbtn")
 
 
 
-function removeItem(i) {
+function removeItem(id) {
     console.log("類型是" + typeof (id));
     console.log("內容是" + (id));
 
